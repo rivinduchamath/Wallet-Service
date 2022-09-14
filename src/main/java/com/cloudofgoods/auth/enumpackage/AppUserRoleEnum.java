@@ -1,2 +1,5 @@
-package com.cloudofgoods.auth.enumpackage;public class AppUserRoleEnum {
+package com.cloudofgoods.auth.enumpackage;
+
+public enum AppUserRoleEnum {
+    ROLE_USER, ROLE_ADMIN
 }

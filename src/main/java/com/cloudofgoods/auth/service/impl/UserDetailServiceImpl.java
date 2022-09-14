@@ -5,7 +5,6 @@ import com.cloudofgoods.auth.dao.UserDetailRepository;
 import com.cloudofgoods.auth.dto.AccountLockUnlockDTO;
 import com.cloudofgoods.auth.dto.UserDTO;
 import com.cloudofgoods.auth.dto.UserRegisterDTO;
-import com.cloudofgoods.auth.entity.Role;
 import com.cloudofgoods.auth.entity.User;
 import com.cloudofgoods.auth.model.AuthUserDetail;
 import com.cloudofgoods.auth.service.UserDetailService;
@@ -83,31 +82,6 @@ public class UserDetailServiceImpl implements UserDetailsService, UserDetailServ
         return Optional.of(userDTO);
     }
 
-    @Override
-    public String removeRoleFromUser(String userName, Role role) {
-
-        User removeRoleReturnedValue = null;
-        Optional<User> userFromUserName = userDetailRepository.findByEmail(userName);
-        if (userFromUserName.isPresent()) {
-            User existingUserDetails = new User(userFromUserName.get());
-            List<Role> list = new ArrayList<>();
-            for (Role getUserRoleOneByOne : existingUserDetails.getRoles()) {
-
-                if (!getUserRoleOneByOne.getName().equals(role.getName())) {
-                    if (!list.contains(getUserRoleOneByOne)) list.add(getUserRoleOneByOne);
-                }
-            }
-            existingUserDetails.setRoles(null);
-            existingUserDetails.setRoles(list);
-
-            removeRoleReturnedValue = userDetailRepository.save(existingUserDetails);
-        }
-        if (!ObjectUtils.isEmpty(removeRoleReturnedValue)) {
-            return "User Remove Successfully";
-        } else {
-            return "User Remove Fail";
-        }
-    }
 
     @Override
     public String lockOrUnlockUserAccount(AccountLockUnlockDTO accountLockUnlockDTO) {
@@ -150,10 +124,10 @@ public class UserDetailServiceImpl implements UserDetailsService, UserDetailServ
      /*   Optional<User> domainUser = userDetailRepository.findByUsername(name);
 
 
-        List<Role> roles = domainUser.get().getRoles();
+        List<RoleDTO> roles = domainUser.get().getRoleDTOS();
         System.out.println(roles+" ");
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        for(Role role: roles){
+        for(RoleDTO role: roles){
             authorities.add(new SimpleGrantedAuthority(role.getName()));
 
         }

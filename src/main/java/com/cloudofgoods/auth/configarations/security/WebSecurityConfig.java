@@ -29,13 +29,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-//    @Order(1)
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        //configure your path here
-//        http.authorizeRequests().antMatchers(OAuth2ServerConfiguration.AUTH_WHITELIST).permitAll();
-//    }
-
     @Bean
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();

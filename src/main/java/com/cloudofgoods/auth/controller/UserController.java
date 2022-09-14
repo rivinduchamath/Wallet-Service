@@ -64,11 +64,6 @@ public class UserController {
         return "test";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/remove-role")
-    @ResponseStatus(HttpStatus.OK)
-    public String removeRoleFromUser(@RequestBody CustomUserRoleDTO customUserRole) {
-        return userDetailService.removeRoleFromUser(customUserRole.getUserName(), customUserRole.getRole());
-    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/get-all-users")
     @ResponseStatus(HttpStatus.OK)

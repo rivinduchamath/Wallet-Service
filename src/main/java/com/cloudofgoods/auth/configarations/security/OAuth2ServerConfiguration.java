@@ -49,7 +49,6 @@ public class OAuth2ServerConfiguration {
         @Override
         public void configure(HttpSecurity http) throws Exception {
             log.info("OAuth2ServerConfiguration.ResourceServerConfiguration.configure(HttpSecurity)");
-//            http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();;
             http.authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
                     .anyRequest().
                     fullyAuthenticated();

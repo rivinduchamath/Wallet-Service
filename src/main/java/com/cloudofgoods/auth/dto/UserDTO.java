@@ -1,6 +1,5 @@
 package com.cloudofgoods.auth.dto;
 
-import com.cloudofgoods.auth.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +20,7 @@ public class UserDTO {
     private boolean accountNonExpired;
     private boolean credentialsNonExpired;
     private boolean accountNonLocked;
-    private List<Role> roles;
+    private List<RoleDTO> roleDTOS;
 
     public UserDTO(Long id, String username, String email, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked) {
         this.id = id;
