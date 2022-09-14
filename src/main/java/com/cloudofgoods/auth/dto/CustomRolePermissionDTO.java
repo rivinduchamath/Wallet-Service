@@ -1,0 +1,14 @@
+package com.cloudofgoods.auth.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CustomRolePermissionDTO {
+
+    private String roleName;
+
+}
