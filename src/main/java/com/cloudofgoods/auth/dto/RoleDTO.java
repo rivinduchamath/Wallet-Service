@@ -1,5 +1,6 @@
-package com.cloudofgoods.auth.entity;
+package com.cloudofgoods.auth.dto;
 
+import com.cloudofgoods.auth.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,19 @@ public class Role implements SuperEntity {
     private Integer id;
     @Column(name = "name", unique = true)
     private String name;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "permission_role", joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "permission_id", referencedColumnName = "id")})
+    private List<Permission> permissions;
+
 
     public Role(Role role) {
         this.id = role.getId();
         this.name = role.getName();
+        this.permissions = role.getPermissions();
     }
 
+    public Role(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
